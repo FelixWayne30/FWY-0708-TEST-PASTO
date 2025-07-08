@@ -1,15 +1,20 @@
 {
   "main": "dist-electron/main.js",
   "scripts": {
-    "dev": "concurrently \"vite --config configs/vite.config.ts\" \"wait-on http://localhost:5173 && electron .\"",
-    "build": "tsc && vite build --config configs/vite.config.ts && electron-builder",
-    "electron": "electron .",
-    "compile": "tsc --project tsconfig.node.json"
+    "dev": "concurrently \"vite --config configs/vite.config.ts\" \"wait-on http://localhost:5173 && electron dist-electron/main.js\"",
+    "build:electron": "npx tsc --project electron/tsconfig.json",
+    "build:renderer": "vite build --config configs/vite.config.ts",
+    "build": "npm run build:electron && npm run build:renderer",
+    "electron": "npm run build:electron && electron dist-electron/main.js"
   },
   "devDependencies": {
     "@types/node": "^24.0.10",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.6.0",
     "concurrently": "^9.2.0",
+    "electron": "^37.2.0",
+    "typescript": "^5.8.3",
     "vite": "^6.3.5",
     "wait-on": "^8.0.3"
   }

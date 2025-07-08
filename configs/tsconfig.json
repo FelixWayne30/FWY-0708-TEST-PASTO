@@ -16,16 +16,16 @@
         "noEmit": true,
         "jsx": "react-jsx",
         "strict": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true
+        "types": [
+            "node"
+        ]
     },
     "include": [
-        "src"
+        "src/**/*"
     ],
-    "references": [
-        {
-            "path": "./tsconfig.node.json"
-        }
+    "exclude": [
+        "node_modules",
+        "dist-electron",
+        "electron"
     ]
 }
