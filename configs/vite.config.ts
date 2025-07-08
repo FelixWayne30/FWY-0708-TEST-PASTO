@@ -9,6 +9,6 @@ export default defineConfig({
         outDir: resolve(__dirname, '../dist-renderer')
     },
     server: {
-        port: 5173
+        port: 5174
     }
 })
