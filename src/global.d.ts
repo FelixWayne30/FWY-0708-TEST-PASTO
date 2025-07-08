@@ -7,6 +7,7 @@ declare global {
             createCardFromClipboard: () => Promise<any>;
             getAllCards: () => Promise<any[]>;
             onCardCreated: (callback: (card: any) => void) => void;
+            pasteCardContent: (content: string) => Promise<void>;
         }
     }
 }
