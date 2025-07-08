@@ -10,5 +10,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
     getAllCards: () => ipcRenderer.invoke('get-all-cards'),
     onCardCreated: (callback: (card: any) => void) => {
         ipcRenderer.on('card-created', (_event, card) => callback(card))
-    }
+    },
+    pasteCardContent: (content: string) => ipcRenderer.invoke('paste-card-content', content)
 })
