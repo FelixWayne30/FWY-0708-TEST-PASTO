@@ -15,17 +15,17 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react-jsx",
-        "strict": true,
+        "strict": false,
         "types": [
             "node"
         ]
     },
     "include": [
-        "src/**/*"
+        "../src/**/*"
     ],
     "exclude": [
         "node_modules",
-        "dist-electron",
-        "electron"
+        "../dist-electron",
+        "../electron"
     ]
 }
