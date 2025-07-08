@@ -1,4 +1,4 @@
-import { app, BrowserWindow, globalShortcut, clipboard } from 'electron'
+import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron'
 import { join } from 'path'
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -8,6 +8,7 @@ class PasterApp {
 
     constructor() {
         this.initApp()
+        this.setupIPC()
     }
 
     private async initApp() {
@@ -31,7 +32,7 @@ class PasterApp {
             webPreferences: {
                 nodeIntegration: false,
                 contextIsolation: true,
-                preload: join(__dirname, '../preload/preload.js')
+                preload: join(__dirname, '../preload.js')
             }
         })
 
@@ -43,13 +44,21 @@ class PasterApp {
         }
     }
 
+    private setupIPC() {
+        ipcMain.handle('hide-panel', () => {
+            this.mainWindow?.hide()
+        })
+
+        ipcMain.handle('get-clipboard-data', () => {
+            return '测试剪贴板数据'
+        })
+    }
+
     private registerShortcuts() {
-        // Ctrl+Q: 复制到剪贴板
         globalShortcut.register('CommandOrControl+Q', () => {
             console.log('复制快捷键触发')
         })
 
-        // Ctrl+E: 显示粘贴面板
         globalShortcut.register('CommandOrControl+E', () => {
             this.showPastePanel()
         })

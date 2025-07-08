@@ -17,8 +17,6 @@
         "./**/*"
     ],
     "exclude": [
-        "node_modules",
-        "../src",
-        "../configs"
+        "node_modules"
     ]
 }
